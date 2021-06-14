@@ -12,7 +12,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    String name;
+    private String name;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Author> authors = new ArrayList<>();
