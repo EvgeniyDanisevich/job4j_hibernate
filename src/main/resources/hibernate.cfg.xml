@@ -23,5 +23,9 @@
         <mapping class="ru.job4j.manytomany.Author" />
         <mapping class="ru.job4j.lazy.Mark" />
         <mapping class="ru.job4j.lazy.Auto" />
+
+        <mapping class="ru.job4j.relation.Auto" />
+        <mapping class="ru.job4j.relation.Engine" />
+        <mapping class="ru.job4j.relation.Driver" />
     </session-factory>
 </hibernate-configuration>
