@@ -7,6 +7,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 public class HbmRun {
     public static void main(String[] args) {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -20,10 +22,17 @@ public class HbmRun {
             Candidate candidate2 = Candidate.of("Василий", "Джуниор", 100.0);
             Candidate candidate3 = Candidate.of("Афанасий", "Миддл", 150.0);
 
+            VacancyBase base = VacancyBase.of("hh.ru");
+            Vacancy vacancy1 = Vacancy.of("Java junior", 100.00);
+            Vacancy vacancy2 = Vacancy.of("Java middle", 150.00);
+
+            base.setVacancies(List.of(vacancy1, vacancy2));
+            candidate1.setVacancyBase(base);
+
             session.save(candidate1);
             session.save(candidate2);
             session.save(candidate3);
-
+/*
             Query query1 = session.createQuery("from Candidate");
             for (Object st : query1.list()) {
                 System.out.println(st);
@@ -58,6 +67,14 @@ public class HbmRun {
             for (Object st : query4.list()) {
                 System.out.println(st);
             }
+*/
+
+            Candidate candidate = session.createQuery(
+                    "select distinct c from Candidate c " +
+                            "join fetch c.vacancyBase a " +
+                            "join fetch a.vacancies where c.id = 1", Candidate.class).uniqueResult();
+
+            System.out.println(candidate);
 
             session.getTransaction().commit();
             session.close();
