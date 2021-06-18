@@ -13,13 +13,13 @@ public class Driver {
 
     private String name;
 
-    private Set<Auto> autos;
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "history_owner", joinColumns = {
             @JoinColumn(name = "auto_id", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "driver_id",
                     nullable = false, updatable = false) })
+    private Set<Auto> autos;
+
     public Set<Auto> getAutos() {
         return autos;
     }

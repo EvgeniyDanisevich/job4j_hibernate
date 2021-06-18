@@ -14,13 +14,13 @@ public class Auto {
     @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "ENGINE_ID_FK") )
     private Engine engine;
 
-    private Set<Driver> drivers;
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "history_owner", joinColumns = {
             @JoinColumn(name = "driver_id", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "auto_id",
                     nullable = false, updatable = false) })
+    private Set<Driver> drivers;
+
     public Set<Driver> getDrivers() {
         return drivers;
     }
