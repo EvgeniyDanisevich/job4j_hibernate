@@ -21,11 +21,11 @@ public class HbmRun {
 
             Mark chevrolet = Mark.of("Chevrolet");
 
-            Auto one = Auto.of("Corvette", chevrolet);
-            Auto two = Auto.of("Cruze", chevrolet);
-            Auto three = Auto.of("Impala", chevrolet);
-            Auto four = Auto.of("Tahoe", chevrolet);
-            Auto five = Auto.of("Camaro", chevrolet);
+            LazyAuto one = LazyAuto.of("Corvette", chevrolet);
+            LazyAuto two = LazyAuto.of("Cruze", chevrolet);
+            LazyAuto three = LazyAuto.of("Impala", chevrolet);
+            LazyAuto four = LazyAuto.of("Tahoe", chevrolet);
+            LazyAuto five = LazyAuto.of("Camaro", chevrolet);
 
             session.save(one);
             session.save(two);
@@ -38,8 +38,8 @@ public class HbmRun {
             marks = session.createQuery("from Mark").list();
 
             for (Mark mark : marks) {
-                for (Auto auto : mark.getAutos()) {
-                    System.out.println(auto);
+                for (LazyAuto lazyAuto : mark.getAutos()) {
+                    System.out.println(lazyAuto);
                 }
             }
 

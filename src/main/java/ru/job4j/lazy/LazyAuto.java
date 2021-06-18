@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "autos")
-public class Auto {
+public class LazyAuto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -16,11 +16,11 @@ public class Auto {
     @JoinColumn(name = "marks_id")
     private Mark mark;
 
-    public static Auto of(String name, Mark mark) {
-        Auto auto = new Auto();
-        auto.name = name;
-        auto.mark = mark;
-        return auto;
+    public static LazyAuto of(String name, Mark mark) {
+        LazyAuto lazyAuto = new LazyAuto();
+        lazyAuto.name = name;
+        lazyAuto.mark = mark;
+        return lazyAuto;
     }
 
     public int getId() {
@@ -55,8 +55,8 @@ public class Auto {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Auto auto = (Auto) o;
-        return id == auto.id;
+        LazyAuto lazyAuto = (LazyAuto) o;
+        return id == lazyAuto.id;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Auto {
 
     @Override
     public String toString() {
-        return "Auto{"
+        return "LazyAuto{"
                 + "id=" + id
                 + ", name='" + name + '\''
                 + ", mark=" + mark +

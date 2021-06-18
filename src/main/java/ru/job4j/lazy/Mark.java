@@ -15,7 +15,7 @@ public class Mark {
     private String name;
 
     @OneToMany(mappedBy = "mark")
-    private List<Auto> autos = new ArrayList<>();
+    private List<LazyAuto> lazyAutos = new ArrayList<>();
 
     public static Mark of(String name) {
         Mark mark = new Mark();
@@ -39,12 +39,12 @@ public class Mark {
         this.name = name;
     }
 
-    public List<Auto> getAutos() {
-        return autos;
+    public List<LazyAuto> getAutos() {
+        return lazyAutos;
     }
 
-    public void setAutos(List<Auto> autos) {
-        this.autos = autos;
+    public void setAutos(List<LazyAuto> lazyAutos) {
+        this.lazyAutos = lazyAutos;
     }
 
     @Override
